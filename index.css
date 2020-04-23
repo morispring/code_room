@@ -1,0 +1,21 @@
+.ball {position: absolute;}
+.capitalize {
+  text-transform: capitalize;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.sideInLeft-enter-active, .sideInLeft-leave-active {
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.sideInLeft-enter, .sideInLeft-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.sideInLeft-enter-to, .sideInLeft-leave {
+  transform: translateX(0);
+}

@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        
+        <div id="ball">
+          🍣
+        </div>
+
+        <div id="app">
+          <p>ご希望到着日 : {{ arrival_date }}</p>
+          <input type="date"  v-model="arrival_date" v-bind:min="min_date">
+          <p>ご注文をお選びください : {{ selection }}</p>
+          <label>
+            <input type="checkbox" v-model="answer" value="ケーキ">ケーキ
+          </label>
+          <label>
+            <input type="checkbox" v-model="answer" value="紅茶">紅茶
+          </label>
+          <label>
+            <input type="checkbox" v-model="answer" value="ぷいん">ぷいん
+          </label>
+          <p>いかがでしたでしょうか？ : {{ kotae }}</p>
+          <label>
+            <input type="radio" v-model="kotae" value="ケーキ">ケーキ
+          </label>
+          <label>
+            <input type="radio" v-model="kotae" value="紅茶">紅茶
+          </label>
+          <label>
+            <input type="radio" v-model="kotae" value="ぷいん">ぷいん
+          </label>
+          <button v-on:click="see = !see">表示を切り替える</button>
+          <transition name="fade">
+            <fieldset v-if="see">
+              <legend>あんたの好きな色は</legend>
+              <input type="color" v-model="color"> {{ color }} <br>
+              赤 : <input type="range" v-model.number="red" min="0" max="255">　{{ red }} <br>
+              緑 : <input type="range" v-model.number="green" min="0" max="255"> {{ green }} <br>
+              青 : <input type="range" v-model.number="blue" min="0" max="255"> {{ blue }} <br>
+            </fieldset>
+          </transition name="slideInLeft">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0.animate.min.css">
+          <button v-on:click="show = !show">表示を切り替える</button>
+            <transition name="zoom" enter-active-class="animate zoomIn" leave-active-class="animated zoomOut">
+              <p v-if="show">ご利用頻度は? : {{ kaisuu }}</p>
+              <select v-model="kaisuu">
+                <option disabled value="">選択してください</option>
+                <option value="初めて">初めて</option>
+                <option value="１回目">１回目</option>
+                <option value="１０回以上">１０回以上</option>
+                <option value="毎日">毎日</option>
+              </select>
+            </transition>
+          ウィンドウの横幅 : {{width}}<br>
+          ウィンドウの高さ : {{height}}
+          <p>マウスカーソルの位置 : {{ point.x }}, {{ point.y }}</p>
+          <div v-show="true">
+          <p>now1: "{{ now1() }}"</p>
+          <p>now2: "{{ now2 }}"</p>
+          </div>
+          調べたい年 : <input type="text" v-model="year"><br>
+          {{ year }}年は{{isUrudoshi ? 'うるう年' : 'じゃないよ'}}
+          <input type="text" v-on:input="yearInputHandler" v-bind:value="year"><br>
+          {{ price | number_format | unit }} <span v-show="price < 10000" >セール実施中!</span>
+          <template v-if="stock >= 1"></template>
+            <p><span v-if="stock >= 1">残り {{stock}}</span></p>
+            <button class="btn" v-on:click="onDeleteItem">削除</button>
+            {{ soldout }}
+            {{ statusMessage }}
+          </template>
+          <p><input type="text" v-bind:value="message"></p>
+          <p v-bind:style="{fontSize: pSize}">文字サイズは{{pSize}}です。</p>
+          <p v-bind:class="{capitalize: isCapital}">hello</p>
+          <table border="1">
+            <tr><th>商品コード</th><th>商品名</th></tr>
+            <tr v-for="item in products" v-bind:key="item.code">
+              <td>{{item.code}}</td><td>{{item.name}}</td>
+            </tr>
+          </table>
+        </div>
+        
+        <script src="index.js"></script>
+    </body>
+</html>
