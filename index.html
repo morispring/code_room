@@ -11,6 +11,7 @@
         </div>
 
         <div id="app">
+          <show-hello></show-hello>
           <p>ご希望到着日 : {{ arrival_date }}</p>
           <input type="date"  v-model="arrival_date" v-bind:min="min_date">
           <p>ご注文をお選びください : {{ selection }}</p>
@@ -84,5 +85,6 @@
         </div>
         
         <script src="index.js"></script>
+        <script src="show-hello.js"></script>
     </body>
 </html>
