@@ -6,13 +6,20 @@
     <body>
         <div id="app">
           <show-hello></show-hello>
-          <my-product name="スマホケースA" price="970"></my-product>
-          <my-product name="スマホケースB" price="1970"></my-product>
+          <my-product v-on:click.native="priceDown" v-bind:price="price"></my-product>
+          <list-product v-for="item in products" v-bind="item" v-bind:key="item.id"></list-product>
+          <table border="1">
+            <tbody>
+                <tr is="my-row" v-for="item in products" v-bind="item" v-bind:key="item.id"></tr>
+            </tbody>
+          </table>
         </div>
         
         <script src="https://jp.vuejs.org/js/vue.js"></script>
         <script src="show-hello.js"></script>
         <script src="my-product.js"></script>
+        <script src="list-product.js"></script>
+        <script src="my-row.js"></script>
         <script src="component_test.js"></script>
     </body>
 </html>
